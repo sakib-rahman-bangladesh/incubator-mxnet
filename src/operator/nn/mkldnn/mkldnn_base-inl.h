@@ -156,7 +156,7 @@ static inline bool SupportMKLDNN(int dtype, const mxnet::TShape& shape) {
          (ndim == 1 || ndim == 2 || ndim == 4);
 }
 
-static inline bool SupportMKLDNNQuantize(int dtype) {
+static inline bool IsMKLDNNType(int dtype) {
   return dtype == mshadow::kFloat32 || dtype == mshadow::kInt8 || dtype == mshadow::kUint8 ||
          dtype == mshadow::kBfloat16;
 }
@@ -217,7 +217,8 @@ bool SupportMKLDNNLogSoftmax(const SoftmaxParam& param,
 bool SupportMKLDNNSoftmaxOutput(const SoftmaxOutputParam& param);
 bool SupportMKLDNNTranspose(const TransposeParam& param, const NDArray& data);
 bool SupportMKLDNNBatchDot(const std::vector<NDArray>& inputs, const NDArray& output);
-bool SupportMKLDNNLayerNorm(const LayerNormParam& param, const std::vector<NDArray> &inputs);
+bool SupportMKLDNNLayerNorm(const LayerNormParam& param, const std::vector<NDArray>& inputs);
+bool SupportMKLDNNReshape(const NDArray& input, const NDArray& output);
 }  // namespace op
 
 static int GetTypeSize(int dtype) {
